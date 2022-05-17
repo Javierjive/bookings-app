@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "XdebugPHP",
+            "type": "php",
+            "request": "launch",
+            "log": true,
+            "port": 9003,
+            "pathMappings": {
+                "/app": "${workspaceFolder}"
+            },
+            "xdebugSettings": {
+                "max_depth": 4,
+                "max_children": 200
+            }
+        }
+    ]
+}

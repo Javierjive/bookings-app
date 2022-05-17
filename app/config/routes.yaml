@@ -1,0 +1,34 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+# User
+
+home:
+    path: /
+    controller: App\Controller\BookingController::list
+    methods: [GET]
+
+new_reserv:
+    path: /new_reserv
+    controller: App\Controller\BookingController::newReserv
+    methods: [GET]
+
+get_free_rooms:
+    path: /get_free_rooms
+    controller: App\Controller\BookingController::getFreeRooms
+    methods: [POST]
+
+save_reserv:
+    path: /save_reserv
+    controller: App\Controller\BookingController::saveReserv
+    methods: [POST]
+
+
+bookings_list:
+    path: /list
+    controller: App\Controller\BookingController::list
+    methods: [GET]
+
+
+

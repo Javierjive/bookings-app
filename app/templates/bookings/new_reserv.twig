@@ -1,0 +1,152 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create new reserv!{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="title">
+        <h3 >Do new reserv!</h3>
+    </div>
+    <div id="booking-process" class="d-flex">
+        <div id="booking-steps" >
+            <div id="step-1" >
+                <h4><span class="rounding">1</span> Select dates</h4>
+
+                <form id="form-bookings-date">
+                    <label class="form-label"><i class="fa-solid fa-asterisk"></i> Check in date</label>
+                    <input type="date" class="form-control datepicker" name="date_check_in" id="date-checkin"/>
+                    <label class="form-label mt-3"><i class="fa-solid fa-asterisk"></i> Check out date</label>
+                    <input type="date" class="form-control datepicker" name="date_check_out" id="date-checkout"/>
+                    <label class="form-label mt-3"><i class="fa-solid fa-asterisk"></i> Number of guests</label>
+                    <input type="number" class="form-control" name="n_guests" id="n-guests"/>
+
+                    <div class="pt-lg-2 d-none" id="error-step-1">
+                        <span class="error-info-validation">Must fill request fields</span>
+                    </div>
+
+                </form>
+                <div class="d-flex justify-content-center mt-5">
+                    <button class="std-button" type="" id="button-next-step-1">Next <i class="fa-solid fa-angle-right"></i></button>
+                </div>
+            </div>
+
+            <div id="step-2" class="d-none opacity-0">
+                <h4><span class="rounding">2</span> Select room</h4>
+                <div class="mt-md-3 mb-md-3 d-flex justify-content-center">
+                    <span id="n-free-rooms"></span>
+                </div>
+
+                <form>
+                    <div id="free_rooms"></div>
+
+                    <div class="pt-lg-2 d-none" id="error-step-2">
+                        <span class="error-info-validation">Must select a room</span>
+                    </div>
+                </form>
+                <div class="d-flex justify-content-between">
+                    <button class="std-button back-button" id="button-back-step-2"><i class="fa-solid fa-angle-left"></i> Back</button>
+                    <button class="std-button" id="button-next-step-2" type="">Next <i class="fa-solid fa-angle-right"></i></button>
+                </div>
+            </div>
+
+            <div id="step-3" class="d-none">
+                <h4><span class="rounding">3</span> Entering data guest</h4>
+
+                <form>
+                    <label class="form-label"><i class="fa-solid fa-asterisk"></i> Name</label>
+                    <input type="text" class="form-control mb-3" name="guest_name" id="guest-name"/>
+
+                    <label class="form-label"><i class="fa-solid fa-asterisk"></i> Surname</label>
+                    <input type="text" class="form-control mb-3" name="guest_surname" id="guest-surname"/>
+
+                    <label class="form-label"><i class="fa-solid fa-asterisk"></i> DNI</label>
+                    <input type="text" class="form-control mb-3" name="guest_dni" id="guest-dni"/>
+
+                    <label class="form-label"><i class="fa-solid fa-asterisk"></i> Int call code</label>
+                    <input type="text" class="form-control mb-3" name="guest_int_call_code_phone_1" id="guest-int-call-code-1"/>
+
+                    <label class="form-label"><i class="fa-solid fa-asterisk"></i> Primary phone</label>
+                    <input type="text" class="form-control mb-3" name="guest_phone_1" id="guest-phone-1"/>
+
+                    <label class="form-label">Int call code</label>
+                    <input type="text" class="form-control mb-3" name="guest_int_call_code_phone_2" id="guest-int-call-code-2"/>
+
+                    <label class="form-label">Secondary phone</label>
+                    <input type="text" class="form-control mb-3" name="guest_phone_2" id="guest-phone-2"/>
+
+                    <label class="form-label"><i class="fa-solid fa-asterisk"></i> Email</label>
+                    <input type="text" class="form-control mb-3" name="guest_email" id="guest-email"/>
+
+                    <label class="form-label "><i class="fa-solid fa-asterisk"></i> Total price</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="total_price" id="total-price" value=""/>
+                        <div class="input-group-append">
+                            <span class="input-group-text currency-value">€</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <button class="std-button back-button" id="button-back-step-3"><i class="fa-solid fa-angle-left"></i> Back</button>
+                        <button class="std-button" type="" id="button-next-step-3">Next</button>
+                    </div>
+
+                    <div class="pt-lg-2 d-none" id="error-step-3">
+                        <span class="error-info-validation">Must fill request fields</span>
+                    </div>
+                </form>
+            </div>
+            <div id="step-4" class="d-none">
+                <h4><span class="rounding">4</span> Resume and save booking!</h4>
+
+                <div>
+                    <div class="d-flex"><h6>Booking date:</h6> <span class="txt-info" id="resume-booking-date"></span></div>
+                    <div class="d-flex"><h6>Booking room:</h6> <span class="txt-info" id="resume-booking-room"></span></div>
+                    <h6>Booking guest:</h6>
+                    <ul>
+                        <li id="resume-guest-name"></li>
+                        <li id="resume-guest-phone-1"></li>
+                        <li id="resume-guest-email"></li>
+                    </ul>
+                    <div class="d-flex"><h6>Total price:</h6> <span class="txt-info" id="resume-booking-price"></span></div>
+                    <div class="d-flex justify-content-between">
+                        <button class="std-button back-button" id="button-back-step-4"><i class="fa-solid fa-angle-left"></i> Back</button>
+                        <button class="std-button back-button" id="save-booking"><i class="fa-solid fa-cart-flatbed-suitcase"></i> Reserve</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-info" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-info-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modal-info-content">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="d-none">
+        <div>
+            <span>Legal text 1:</span> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+        </div>
+        <div class="mt-3">
+            <span>Legal text 2:</span> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+        </div>
+        <div class="mt-3">
+            <span>Legal text 3:</span> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+        </div>
+    </footer>
+
+{% endblock %}

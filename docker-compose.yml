@@ -1,0 +1,38 @@
+version: '3'
+services:
+  web:
+    build:
+        args:
+            user: ${CONTAINER_WEB_USER}
+            uid: ${CONTAINER_WEB_UID}
+        context: ./
+    ports:
+      - '8000:80'
+    volumes:
+      - ./app:/app
+  mysql_cs:
+    image: 'mysql:latest'
+    container_name: mysql_cs
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASS}
+      MYSQL_PASSWORD: ${DATABASE_PASS}
+      MYSQL_USER: ${DATABASE_USER}
+    volumes:
+      - mysql-data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_cs
+    links:
+      - mysql_cs
+    environment:
+      PMA_HOST: mysql_cs
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80
+volumes:
+  mysql-data:

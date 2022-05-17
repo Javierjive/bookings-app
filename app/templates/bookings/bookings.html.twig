@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookings list{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="title">
+        <h3 >Bookings List</h3>
+    </div>
+
+<div class="row">
+    <table class="">
+        <thead>
+        <tr>
+            <th scope="col">Check in</th>
+            <th scope="col">Check out</th>
+            <th scope="col">Room number</th>
+            <th scope="col">Number of guests</th>
+            <th scope="col">Guest name</th>
+            <th scope="col">Guest phone</th>
+            <th scope="col">Guest email</th>
+            <th scope="col">Guest dni</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.date_checkin|date('Y-m-d') }}</td>
+                <td>{{ booking.date_checkout|date('Y-m-d') }}</td>
+                <td>{{ booking.room_number|e }} - {{ booking.room_name }}</td>
+                <td>{{ booking.n_guest|e }}</td>
+                <td>{{ booking.guest_name|e }} {{ booking.guest_surname|e }}</td>
+                <td>+{{ booking.guest_int_call_code_1 }} - {{ booking.guest_phone_1|e }}</td>
+                <td><a href="mailto:{{ booking.guest_email|e }}">{{ booking.guest_email|e }}</a></td>
+                <td>{{ booking.guest_dni|e }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center mt-5">
+        <a class="std-button" href="{{ path('new_reserv') }}"><i class="fa-solid fa-plus"></i> Add Reserv </a>
+    </div>
+</div>
+</div>
+
+{% endblock %}
